@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  client:
+    build: .
+    container_name: app-client
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
