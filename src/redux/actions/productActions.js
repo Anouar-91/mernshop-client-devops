@@ -57,6 +57,8 @@ export const detailProduct = (id) => async (dispatch) => {
             payload: data
         })
     } catch (error) {
+        Sentry.captureException(error);
+
         dispatch({
             type: PRODUCT_DETAIL_FAIL,
             payload: error.response && error.response.data.message 
@@ -81,6 +83,8 @@ export const deleteProduct = (id) => async (dispatch,getState) => {
             type:PRODUCT_DELETE_SUCCESS,
         })
     } catch (error) {
+        Sentry.captureException(error);
+
         dispatch({
             type: PRODUCT_DELETE_FAIL,
             payload: error.response && error.response.data.message 
@@ -107,6 +111,8 @@ export const createProduct = () => async (dispatch,getState) => {
             payload:data
         })
     } catch (error) {
+        Sentry.captureException(error);
+
         dispatch({
             type: PRODUCT_CREATE_FAIL,
             payload: error.response && error.response.data.message 
@@ -132,6 +138,8 @@ export const updateProduct = (product) => async (dispatch,getState) => {
             payload:data
         })
     } catch (error) {
+        Sentry.captureException(error);
+
         dispatch({
             type: PRODUCT_UPDATE_FAIL,
             payload: error.response && error.response.data.message 
@@ -158,6 +166,8 @@ export const createProductReview = (productId, review) => async (dispatch,getSta
             payload:data
         })
     } catch (error) {
+        Sentry.captureException(error);
+
         dispatch({
             type: PRODUCT_CREATE_REVIEW_FAIL,
             payload: error.response && error.response.data.message 
@@ -178,6 +188,7 @@ export const listTopProducts = () => async (dispatch) => {
         })
 
     } catch (error) {
+       Sentry.captureException(error)
         dispatch({
             type: PRODUCT_TOP_FAIL,
             payload: error.response && error.response.data.message 
