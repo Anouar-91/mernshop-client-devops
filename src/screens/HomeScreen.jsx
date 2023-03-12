@@ -10,6 +10,8 @@ import Paginate from '../components/Paginate';
 import { Helmet } from 'react-helmet';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
+import axios from 'axios';
+import * as Sentry from '@sentry/react';
 
 
 const HomeScreen = () => {
@@ -19,6 +21,15 @@ const HomeScreen = () => {
     const productList = useSelector(state => state.productList)
     const { loading, error, products, page, pages } = productList
 
+    async function generateError() {
+        console.log("error envoyé")
+        try{
+            const {data} = await axios.get("http://localhost/api/error/" + 'products')
+        }catch(error){
+            Sentry.captureException(error);
+        }
+    }
+
     useEffect(() => {
         dispatch(listProducts(keyword, pageNumber))
     }, [dispatch, keyword, pageNumber])
@@ -27,8 +38,8 @@ const HomeScreen = () => {
         <div className="container">
             <Meta />
             {!keyword && <><div className="mt-3"><ProductCarousel /></div></>}
-
             <h1>Latest Products</h1>
+            <button className="btn btn-primary" onClick={() => generateError()}>Génerer une erreur</button>
             {loading
                 ? <ThreeDots wrapperStyle={{ justifyContent: 'center' }} />
                 : error

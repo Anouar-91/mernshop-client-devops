@@ -18,11 +18,16 @@ import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
-
+import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
+Sentry.init({
+  dsn: "https://c564626926f948cb81e9ea7bc365b8c0@o4504826449100800.ingest.sentry.io/4504826451197952",
+  integrations: [new BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 function App() {
   return (
     <BrowserRouter>
-
       <Header></Header>
       <main>
         <div className="container-fluid">

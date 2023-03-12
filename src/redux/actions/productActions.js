@@ -23,6 +23,8 @@ import {
 
 } 
 from '../constants/productConstants';
+import * as Sentry from '@sentry/react';
+
 import axios from 'axios';
 
 export const listProducts = (keyword = "", pageNumber = "") => async (dispatch) => {
@@ -35,6 +37,7 @@ export const listProducts = (keyword = "", pageNumber = "") => async (dispatch) 
         })
 
     } catch (error) {
+        Sentry.captureException(error);
         dispatch({
             type: PRODUCT_LIST_FAIL,
             payload: error.response && error.response.data.message 
