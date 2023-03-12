@@ -1,0 +1,22 @@
+name: Format code
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Format code
+      uses: actions/checkout@v2
+      with:
+        args: |
+          npx prettier --write "src/**/*.js"
+          npx eslint --fix --ext .js src/
