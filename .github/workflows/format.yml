@@ -18,8 +18,7 @@ jobs:
       run: npm install
     - name: Format code
       uses: actions/checkout@v2
-      with:
-        args: |
+      run: |
           npx prettier --write "src/**/*.js"
           npx eslint --fix --ext .js src/
     - name: Add and commit files
