@@ -17,7 +17,7 @@ jobs:
           npx prettier --write "src/**/*.js"
           npx eslint --fix --ext .js src/
     - name: Commit formatted code
-      uses: elstudio/actions-git-push@v1.0.1
+      uses: ad-m/github-push-action@master
       with:
         branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
