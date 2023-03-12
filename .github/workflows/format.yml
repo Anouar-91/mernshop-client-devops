@@ -17,10 +17,9 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Format code
-      uses: actions/checkout@v2
       run: |
-          npx prettier --write "src/**/*.js"
-          npx eslint --fix --ext .js src/
+        npx prettier --write "src/**/*.js"
+        npx eslint --fix --ext .js src/
     - name: Add and commit files
       run: |
         git checkout main
