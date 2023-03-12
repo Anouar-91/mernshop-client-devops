@@ -28,7 +28,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         if [[ -n "$(git status --porcelain)" ]]; then
           git add .
-          git commit -m "Fix code formatting with PHP-CS-Fixer"
+          git commit -m "Fix code formatting with prettier and eslint"
           git push
         else
           echo "No changes to commit. Skipping git push."
