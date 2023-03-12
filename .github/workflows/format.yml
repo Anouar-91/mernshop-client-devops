@@ -17,8 +17,11 @@ jobs:
           npx prettier --write "src/**/*.js"
           npx eslint --fix --ext .js src/
     - name: Commit formatted code
-      uses: ad-m/github-push-action@master
-      with:
-        branch: main
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        force: true
+      run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git add .
+        git commit -m "Auto-format code"
+        git push origin main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
